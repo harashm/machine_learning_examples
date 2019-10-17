@@ -1,9 +1,9 @@
 # https://deeplearningcourses.com/c/cutting-edge-artificial-intelligence
-from subproc_vec_env import SubprocVecEnv
-from atari_wrappers import make_atari, wrap_deepmind, Monitor
+from rl3.a2c.subproc_vec_env import SubprocVecEnv
+from rl3.a2c.atari_wrappers import make_atari, wrap_deepmind, Monitor
 
-from neural_network import CNN
-from a2c import learn
+from rl3.a2c.neural_network import CNN
+from rl3.a2c.a2c import learn
 
 import os
 
@@ -37,6 +37,7 @@ def train(env_id, num_timesteps, num_cpu):
             # wrap the env one more time for getting total reward
             env = Monitor(env, rank)
             return env
+
         return _thunk
 
     env = SubprocVecEnv([make_env(i) for i in range(num_cpu)])

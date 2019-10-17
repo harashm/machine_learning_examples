@@ -2,11 +2,13 @@
 import argparse
 import os
 import numpy as np
-from atari_wrappers import make_atari, wrap_deepmind, Monitor
-from a2c import Agent
-from neural_network import CNN
-import imageio
-import time
+from rl3.a2c.atari_wrappers import make_atari, wrap_deepmind, Monitor
+from rl3.a2c.a2c import Agent
+from rl3.a2c.neural_network import CNN
+
+
+# import imageio
+# import time
 
 
 def get_args():
@@ -41,7 +43,7 @@ def main():
     agent.load(save_path)
 
     obs = env.reset()
-    renders = []
+    # renders = []
     while True:
         obs = np.expand_dims(obs.__array__(), axis=0)
         a, v = agent.step(obs)

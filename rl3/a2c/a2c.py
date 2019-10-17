@@ -33,7 +33,6 @@ def discount_with_dones(rewards, dones, gamma):
     return discounted[::-1]
 
 
-
 class Agent:
     def __init__(self, Network, ob_space, ac_space, nenvs, nsteps, nstack,
                  ent_coef=0.01, vf_coef=0.5, max_grad_norm=0.5, lr=7e-4,
@@ -110,7 +109,7 @@ class Runner:
         self.gamma = gamma
         self.nsteps = nsteps
         self.dones = [False for _ in range(nenv)]
-        self.total_rewards = [] # store all workers' total rewards
+        self.total_rewards = []  # store all workers' total rewards
         self.real_total_rewards = []
 
     def update_state(self, obs):
@@ -162,7 +161,7 @@ class Runner:
         return mb_states, mb_rewards, mb_actions, mb_values
 
 
-def learn(network, env, seed, new_session=True,  nsteps=5, nstack=4, total_timesteps=int(80e6),
+def learn(network, env, seed, new_session=True, nsteps=5, nstack=4, total_timesteps=int(80e6),
           vf_coef=0.5, ent_coef=0.01, max_grad_norm=0.5, lr=7e-4,
           epsilon=1e-5, alpha=0.99, gamma=0.99, log_interval=1000):
     tf.reset_default_graph()
@@ -200,7 +199,7 @@ def learn(network, env, seed, new_session=True,  nsteps=5, nstack=4, total_times
             print("value_loss", float(value_loss))
 
             # total reward
-            r = runner.total_rewards[-100:] # get last 100
+            r = runner.total_rewards[-100:]  # get last 100
             tr = runner.real_total_rewards[-100:]
             if len(r) == 100:
                 print("avg reward (last 100):", np.mean(r))
